@@ -189,7 +189,11 @@ Porque uma simples mensagem nunca seria suficiente para demonstrar o quanto eu q
 
 let i = 0;
 
+    console.log("Começou");
+
 const elemento = document.getElementById("textoCarta");
+
+    console.log(elemento);
 
 const intervalo = setInterval(()=>{
 
