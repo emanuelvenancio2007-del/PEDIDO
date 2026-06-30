@@ -81,7 +81,7 @@ botaoSim.addEventListener("click", () => {
 
         <h1>❤️</h1>
 
-        <h2>Preparando uma surpresa...</h2>
+        <h2 id="status">Inicializando...</h2>
 
         <div class="barra">
 
@@ -94,6 +94,8 @@ botaoSim.addEventListener("click", () => {
     </div>
 
     `;
+
+    const status = document.getElementById("status");
 
     let numero = 0;
 
@@ -108,6 +110,30 @@ botaoSim.addEventListener("click", () => {
         barra.style.width = numero + "%";
 
         texto.innerHTML = numero + "%";
+
+        if(numero == 25){
+
+    status.innerHTML = "Analisando sua resposta...";
+
+}
+
+if(numero == 50){
+
+    status.innerHTML = "Calculando sinceridade...";
+
+}
+
+if(numero == 75){
+
+    status.innerHTML = "Preparando surpresa...";
+
+}
+
+if(numero == 95){
+
+    status.innerHTML = "Quase pronto... ❤️";
+
+}
 
         if(numero >= 100){
 
