@@ -39,11 +39,25 @@ function fugir(){
     const largura = window.innerWidth - 250;
     const altura = window.innerHeight - 120;
 
-    botaoNao.style.position = "fixed";
+const card = document.querySelector(".container");
 
-    botaoNao.style.left = Math.random()*largura+"px";
+const cardRect = card.getBoundingClientRect();
 
-    botaoNao.style.top = Math.random()*altura+"px";
+const x =
+cardRect.left +
+Math.random() *
+(cardRect.width-220);
+
+const y =
+cardRect.top +
+Math.random() *
+(cardRect.height-70);
+
+botaoNao.style.position="fixed";
+
+botaoNao.style.left=x+"px";
+
+botaoNao.style.top=y+"px";
 
     mensagem.innerHTML = frases[Math.floor(Math.random()*frases.length)];
 
