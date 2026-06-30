@@ -75,25 +75,23 @@ botaoSim.addEventListener("click", () => {
 
     document.querySelector(".container").style.display = "none";
 
-    document.getElementById("loading").innerHTML += `
+    document.body.insertAdjacentHTML("beforeend", `
 
-    <div id="loading">
+<div id="loading">
 
-        <h1>❤️</h1>
+    <h1>❤️</h1>
 
-        <h2 id="status">Inicializando...</h2>
+    <h2 id="status">Inicializando...</h2>
 
-        <div class="barra">
-
-            <div class="progresso"></div>
-
-        </div>
-
-        <p id="porcentagem">0%</p>
-
+    <div class="barra">
+        <div class="progresso"></div>
     </div>
 
-    `;
+    <p id="porcentagem">0%</p>
+
+</div>
+
+`);
 
     const status = document.getElementById("status");
 
@@ -155,11 +153,11 @@ function carta(){
 
         <h2>Uma cartinha pra você...</h2>
 
-        <div id="textoCarta">
-            TESTE TESTE TESTE ❤️
-        </div>
+        <div id="textoCarta"></div>
 
     `;
+
+    escreverCarta();
 
 }
 
