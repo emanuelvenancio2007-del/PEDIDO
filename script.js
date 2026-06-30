@@ -170,3 +170,47 @@ Mas essa ainda não é a surpresa...
 `;
 
 }
+
+function escreverCarta(){
+
+const texto=
+
+`Oi...
+
+Eu só queria te dizer uma coisinha.
+
+Pode parecer cedo...
+
+Mas o pouco tempo que nós nos conhecemos já foi suficiente para você se tornar alguém muito especial para mim.
+
+Cada conversa, cada risada e cada momento fizeram eu perceber o quanto eu gosto da sua companhia.
+
+Talvez você nem imagine...
+
+Mas você consegue deixar meus dias mais leves só por estar presente.
+
+E foi por isso que resolvi fazer esse site.
+
+Porque uma simples mensagem nunca seria suficiente para demonstrar o quanto eu queria te fazer sorrir.
+
+❤️`;
+
+let i=0;
+
+const elemento=document.getElementById("textoCarta");
+
+const intervalo=setInterval(()=>{
+
+    elemento.innerHTML+=texto.charAt(i);
+
+    i++;
+
+    if(i>=texto.length){
+
+        clearInterval(intervalo);
+
+    }
+
+},35);
+
+}
