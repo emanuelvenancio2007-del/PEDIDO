@@ -213,29 +213,31 @@ h3{
 
     position:fixed;
 
-    top:40px;
+    top:25px;
 
     left:50%;
 
     transform:translateX(-50%);
 
-    background:rgba(255,255,255,.1);
+    background:rgba(30,41,59,.8);
 
-    backdrop-filter:blur(10px);
+    backdrop-filter:blur(12px);
 
     color:white;
 
-    padding:15px 30px;
+    padding:18px 35px;
 
-    border-radius:15px;
+    border-radius:20px;
 
-    font-size:20px;
+    font-weight:bold;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.35);
 
     opacity:0;
 
     transition:.4s;
 
-    pointer-events:none;
+    z-index:999;
 
 }
 
