@@ -1,6 +1,7 @@
 const botaoNao = document.getElementById("nao");
 const botaoSim = document.getElementById("sim");
 const stars = document.getElementById("stars");
+const mensagem = document.getElementById("mensagem");
 
 // Estrelas
 for (let i = 0; i < 180; i++) {
