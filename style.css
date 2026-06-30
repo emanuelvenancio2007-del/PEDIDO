@@ -208,3 +208,39 @@ h3{
     transition:.1s;
 
 }
+
+.mensagem{
+
+    position:fixed;
+
+    top:40px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    background:rgba(255,255,255,.1);
+
+    backdrop-filter:blur(10px);
+
+    color:white;
+
+    padding:15px 30px;
+
+    border-radius:15px;
+
+    font-size:20px;
+
+    opacity:0;
+
+    transition:.4s;
+
+    pointer-events:none;
+
+}
+
+.mensagem.show{
+
+    opacity:1;
+
+}
