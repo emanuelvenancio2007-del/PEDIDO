@@ -75,7 +75,7 @@ botaoSim.addEventListener("click", () => {
 
     document.querySelector(".container").style.display = "none";
 
-    document.body.innerHTML += `
+    document.getElementById("loading").innerHTML += `
 
     <div id="loading">
 
