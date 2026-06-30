@@ -197,7 +197,7 @@ const elemento = document.getElementById("textoCarta");
 
 const intervalo = setInterval(()=>{
 
-    elemento.innerHTML += texto.charAt(i);
+    elemento.textContent += texto.charAt(i);
 
     i++;
 
