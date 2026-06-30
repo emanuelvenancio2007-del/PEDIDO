@@ -1,171 +1,310 @@
-const botaoNao = document.getElementById("nao");
-const botaoSim = document.getElementById("sim");
-const stars = document.getElementById("stars");
-const mensagem = document.getElementById("mensagem");
+// ==========================================
+// PROJETO PEDIDO - VERSÃO 2
+// PARTE 1
+// ==========================================
 
-// Estrelas
-for (let i = 0; i < 180; i++) {
-    const star = document.createElement("div");
-    star.className = "star";
-    star.style.left = Math.random() * 100 + "vw";
-    star.style.top = Math.random() * 100 + "vh";
-    star.style.animationDelay = Math.random() * 2 + "s";
-    stars.appendChild(star);
-}
+// ==============================
+// ELEMENTOS DA PÁGINA
+// ==============================
 
-const frases=[
+const ui = {
+    nao: document.getElementById("nao"),
+    sim: document.getElementById("sim"),
+    estrelas: document.getElementById("stars"),
+    mensagem: document.getElementById("mensagem"),
+    container: document.querySelector(".container"),
+    carta: document.getElementById("carta"),
+    textoCarta: document.getElementById("textoCarta")
+};
 
-"😂 Boa tentativa!",
+// ==============================
+// FRASES DO BOTÃO NÃO
+// ==============================
 
-"🤨 Tem certeza?",
-
-"😎 Acho melhor apertar o azul.",
-
-"❤️ Esse botão ficou tímido.",
-
-"🚫 Essa opção está em manutenção.",
-
-"🤣 Você não desiste mesmo.",
-
-"🙃 Quase conseguiu.",
-
-"🥹 Tadinho do Emanuel..."
-
+const frases = [
+    "😂 Boa tentativa!",
+    "🤨 Tem certeza disso?",
+    "😎 Acho melhor apertar o azul.",
+    "❤️ Esse botão ficou tímido.",
+    "🚫 Essa opção está desativada.",
+    "🤣 Você é bem insistente.",
+    "🙃 Quase conseguiu.",
+    "🥹 Tadinho do Emanuel...",
+    "👀 Eu vi isso hein...",
+    "💙 O botão azul está logo ali."
 ];
 
-botaoNao.addEventListener("mouseenter", fugir);
-botaoNao.addEventListener("click", fugir);
+// ==============================
+// INICIAR O SITE
+// ==============================
 
-function fugir() {
+iniciar();
 
-    const card = document.querySelector(".container");
-    const cardRect = card.getBoundingClientRect();
+function iniciar() {
 
-    let x;
-    let y;
+    criarEstrelas();
+
+    configurarBotaoNao();
+
+    configurarBotaoSim();
+
+}
+
+// ==============================
+// ESTRELAS
+// ==============================
+
+function criarEstrelas() {
+
+    ui.estrelas.innerHTML = "";
+
+    for (let i = 0; i < 180; i++) {
+
+        const estrela = document.createElement("div");
+
+        estrela.className = "star";
+
+        estrela.style.left = Math.random() * 100 + "vw";
+
+        estrela.style.top = Math.random() * 100 + "vh";
+
+        estrela.style.animationDelay = (Math.random() * 2).toFixed(2) + "s";
+
+        estrela.style.animationDuration = (1.5 + Math.random() * 2) + "s";
+
+        ui.estrelas.appendChild(estrela);
+
+    }
+
+}
+
+// ==============================
+// BOTÃO NÃO
+// ==============================
+
+function configurarBotaoNao() {
+
+    ui.nao.addEventListener("mouseenter", moverBotao);
+
+    ui.nao.addEventListener("click", moverBotao);
+
+    ui.nao.addEventListener("touchstart", moverBotao);
+
+}
+
+// ==============================
+// MOVER BOTÃO
+// ==============================
+
+function moverBotao(event) {
+
+    event.preventDefault();
+
+    const area = ui.container.getBoundingClientRect();
+
+    const larguraBotao = ui.nao.offsetWidth;
+
+    const alturaBotao = ui.nao.offsetHeight;
+
+    let esquerda;
+
+    let topo;
+
+    let tentativas = 0;
 
     do {
 
-        x = cardRect.left + Math.random() * (cardRect.width - 180);
-        y = cardRect.top + Math.random() * (cardRect.height - 80);
+        esquerda = area.left + Math.random() * (area.width - larguraBotao);
+
+        topo = area.top + Math.random() * (area.height - alturaBotao);
+
+        tentativas++;
 
     } while (
-        x > cardRect.width / 2 &&
-        y > cardRect.height / 2
+
+        esquerda > area.left + area.width * 0.45 &&
+        topo > area.top + area.height * 0.45 &&
+        tentativas < 30
+
     );
 
-    botaoNao.style.position = "fixed";
-    botaoNao.style.left = x + "px";
-    botaoNao.style.top = y + "px";
+    ui.nao.style.position = "fixed";
 
-    mensagem.innerHTML =
-        frases[Math.floor(Math.random() * frases.length)];
+    ui.nao.style.left = esquerda + "px";
 
-    mensagem.classList.add("show");
+    ui.nao.style.top = topo + "px";
 
-    setTimeout(() => {
-
-        mensagem.classList.remove("show");
-
-    }, 1500);
+    mostrarMensagem();
 
 }
 
-botaoSim.addEventListener("click", () => {
+// ==============================
+// MOSTRAR MENSAGEM
+// ==============================
 
-    document.querySelector(".container").style.display = "none";
+function mostrarMensagem() {
 
-    document.body.insertAdjacentHTML("beforeend", `
+    const frase = frases[Math.floor(Math.random() * frases.length)];
 
-<div id="loading">
+    ui.mensagem.textContent = frase;
 
-    <h1>❤️</h1>
+    ui.mensagem.classList.add("show");
 
-    <h2 id="status">Inicializando...</h2>
+    clearTimeout(ui.mensagemTimer);
 
-    <div class="barra">
-        <div class="progresso"></div>
-    </div>
+    ui.mensagemTimer = setTimeout(() => {
 
-    <p id="porcentagem">0%</p>
+        ui.mensagem.classList.remove("show");
 
-</div>
+    }, 1800);
 
-`);
+}
 
-    const status = document.getElementById("status");
+// ==============================
+// BOTÃO SIM
+// ==============================
 
-    let numero = 0;
+function configurarBotaoSim() {
 
-    const texto = document.getElementById("porcentagem");
+    ui.sim.addEventListener("click", iniciarSurpresa);
+
+}
+
+// ==============================
+// SURPRESA
+// ==============================
+
+function iniciarSurpresa() {
+
+    ui.container.style.display = "none";
+
+    criarTelaLoading();
+
+}
+
+// ==============================
+// LOADING
+// ==============================
+
+function criarTelaLoading() {
+
+    const loading = document.createElement("div");
+
+    loading.id = "loading";
+
+    loading.innerHTML = `
+        <h1>❤️</h1>
+
+        <h2 id="status">
+            Inicializando...
+        </h2>
+
+        <div class="barra">
+
+            <div class="progresso"></div>
+
+        </div>
+
+        <p id="porcentagem">
+            0%
+        </p>
+    `;
+
+    document.body.appendChild(loading);
+
+    iniciarLoading();
+
+}
+
+// ==========================================
+// CONTINUAÇÃO - PARTE 2
+// ==========================================
+
+// ==============================
+// INICIAR LOADING
+// ==============================
+
+function iniciarLoading() {
 
     const barra = document.querySelector(".progresso");
+    const porcentagem = document.getElementById("porcentagem");
+    const status = document.getElementById("status");
 
-    const tempo = setInterval(() => {
+    const etapas = [
+        { numero: 0, texto: "Inicializando..." },
+        { numero: 25, texto: "Analisando sua resposta..." },
+        { numero: 50, texto: "Calculando sinceridade..." },
+        { numero: 75, texto: "Preparando uma surpresa..." },
+        { numero: 95, texto: "Quase pronto... ❤️" }
+    ];
 
-        numero++;
+    let progresso = 0;
 
-        barra.style.width = numero + "%";
+    const intervalo = setInterval(() => {
 
-        texto.innerHTML = numero + "%";
+        progresso++;
 
-        if(numero == 25){
+        barra.style.width = progresso + "%";
 
-    status.innerHTML = "Analisando sua resposta...";
+        porcentagem.textContent = progresso + "%";
 
-}
+        etapas.forEach(etapa => {
 
-if(numero == 50){
+            if (progresso === etapa.numero) {
 
-    status.innerHTML = "Calculando sinceridade...";
+                status.textContent = etapa.texto;
 
-}
+            }
 
-if(numero == 75){
+        });
 
-    status.innerHTML = "Preparando surpresa...";
+        if (progresso >= 100) {
 
-}
+            clearInterval(intervalo);
 
-if(numero == 95){
+            setTimeout(() => {
 
-    status.innerHTML = "Quase pronto... ❤️";
+                mostrarCarta();
 
-}
-
-        if(numero >= 100){
-
-            clearInterval(tempo);
-
-            setTimeout(carta,700);
+            }, 700);
 
         }
 
-    },25);
-
-});
-
-function carta(){
-
-    document.getElementById("loading").innerHTML = `
-
-        <h1>💌</h1>
-
-        <h2>Uma cartinha pra você...</h2>
-
-        <div id="textoCarta"></div>
-
-    `;
-
-    escreverCarta();
+    }, 25);
 
 }
 
-function escreverCarta(){
+// ==============================
+// MOSTRAR CARTA
+// ==============================
 
-const texto = `
+function mostrarCarta() {
 
-Oi...
+    const loading = document.getElementById("loading");
+
+    if (loading) {
+
+        loading.remove();
+
+    }
+
+    ui.carta.style.display = "flex";
+
+    setTimeout(() => {
+
+        document.querySelector(".papel").style.display = "block";
+
+        escreverCarta();
+
+    }, 1200);
+
+}
+
+// ==============================
+// TEXTO DA CARTA
+// ==============================
+
+const textoCarta = `Oi...
 
 Eu só queria te dizer uma coisinha.
 
@@ -173,38 +312,207 @@ Pode parecer cedo...
 
 Mas o pouco tempo que nós nos conhecemos já foi suficiente para eu gostar muito de você.
 
-Cada conversa, cada risada e cada momento fizeram eu perceber o quanto sua companhia faz bem.
+Cada conversa, cada risada e cada momento fizeram eu perceber o quanto a sua companhia faz bem.
 
 Você consegue deixar meus dias mais leves sem nem perceber.
 
-Foi por isso que resolvi fazer esse site.
+Talvez isso tudo pareça um pouco bobo...
 
-Porque uma simples mensagem nunca seria suficiente para demonstrar o quanto eu queria te fazer sorrir.
+Mas eu achei que uma simples mensagem nunca seria suficiente.
+
+Então resolvi fazer esse site pra você.
+
+Espero que ele tenha conseguido arrancar pelo menos um sorriso seu.
+
+❤️`;
+
+// ==============================
+// ESCREVER CARTA
+// ==============================
+
+function escreverCarta() {
+
+    ui.textoCarta.textContent = "";
+
+    let indice = 0;
+
+    const velocidade = 28;
+
+    const digitando = setInterval(() => {
+
+        ui.textoCarta.textContent += textoCarta.charAt(indice);
+
+        indice++;
+
+        if (indice >= textoCarta.length) {
+
+            clearInterval(digitando);
+
+            finalizarCarta();
+
+        }
+
+    }, velocidade);
+
+}
+
+// ==============================
+// FINAL DA CARTA
+// ==============================
+
+function finalizarCarta() {
+
+    const botao = document.createElement("button");
+
+    botao.id = "continuar";
+
+    botao.textContent = "❤️ Tem mais uma surpresa";
+
+    botao.style.marginTop = "35px";
+
+    botao.style.padding = "15px 30px";
+
+    botao.style.fontSize = "18px";
+
+    botao.style.cursor = "pointer";
+
+    botao.style.border = "none";
+
+    botao.style.borderRadius = "12px";
+
+    botao.style.background = "#3b82f6";
+
+    botao.style.color = "white";
+
+    botao.style.boxShadow = "0 0 20px #3b82f6";
+
+    document.querySelector(".papel").appendChild(botao);
+
+    botao.addEventListener("click", surpresaFinal);
+
+}
+
+// ==========================================
+// CONTINUAÇÃO - PARTE 3
+// ==========================================
+
+// ==============================
+// SURPRESA FINAL
+// ==============================
+
+function surpresaFinal() {
+
+    document.querySelector(".papel").innerHTML = `
+
+        <h2>❤️ Obrigado por chegar até aqui ❤️</h2>
+
+        <p style="margin-top:25px;line-height:1.8;white-space:pre-wrap;">
+
+Espero que esse pequeno site tenha conseguido arrancar pelo menos um sorriso seu.
+
+Talvez eu seja um pouco bobo...
+
+Mas achei que você merecia algo diferente de uma simples mensagem.
+
+Obrigado por ler até aqui.
 
 ❤️
 
-`;
+        </p>
 
-let i = 0;
+        <button id="btnCoracoes">
 
-    console.log("Começou");
+            ❤️ Clique aqui ❤️
 
-const elemento = document.getElementById("textoCarta");
+        </button>
 
-    console.log(elemento);
+    `;
 
-const intervalo = setInterval(()=>{
+    document
+        .getElementById("btnCoracoes")
+        .addEventListener("click", iniciarCoracoes);
 
-    elemento.textContent += texto.charAt(i);
+}
 
-    i++;
+// ==============================
+// CORAÇÕES
+// ==============================
 
-    if(i >= texto.length){
+function iniciarCoracoes() {
 
-        clearInterval(intervalo);
+    for (let i = 0; i < 80; i++) {
+
+        criarCoracao(i * 120);
 
     }
 
-},35);
+}
+
+// ==============================
+// CRIAR CORAÇÃO
+// ==============================
+
+function criarCoracao(delay) {
+
+    setTimeout(() => {
+
+        const coracao = document.createElement("div");
+
+        coracao.className = "heart";
+
+        coracao.innerHTML = "❤️";
+
+        coracao.style.left = Math.random() * 100 + "vw";
+
+        coracao.style.fontSize =
+            (18 + Math.random() * 22) + "px";
+
+        coracao.style.animationDuration =
+            (4 + Math.random() * 3) + "s";
+
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+
+            coracao.remove();
+
+        }, 7000);
+
+    }, delay);
 
 }
+
+// ==============================
+// OPCIONAL
+// TOCAR MÚSICA
+// ==============================
+
+function tocarMusica() {
+
+    if (window.musica) {
+
+        musica.play();
+
+    }
+
+}
+
+// ==============================
+// UTILIDADE
+// ==============================
+
+function mostrar(elemento) {
+
+    elemento.style.display = "flex";
+
+}
+
+function esconder(elemento) {
+
+    elemento.style.display = "none";
+
+}
+
+// ==========================================
+// FIM DO SCRIPT
+// ==========================================
