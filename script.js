@@ -13,17 +13,49 @@ for (let i = 0; i < 180; i++) {
     stars.appendChild(star);
 }
 
-// Botão fugindo
-botaoNao.addEventListener("mouseenter", () => {
+const frases = [
+
+"😂 Boa tentativa.",
+
+"😒 Essa opção está desativada.",
+
+"🤨 Tem certeza disso?",
+
+"❤️ Vai no azul, confia.",
+
+"🤣 Você é bem insistente!",
+
+"🚫 Erro 404: opção não encontrada.",
+
+"😎 O botão entrou em modo de fuga."
+
+];
+
+botaoNao.addEventListener("mouseenter", fugir);
+botaoNao.addEventListener("click", fugir);
+
+function fugir(){
 
     const largura = window.innerWidth - 250;
     const altura = window.innerHeight - 120;
 
     botaoNao.style.position = "fixed";
-    botaoNao.style.left = Math.random() * largura + "px";
-    botaoNao.style.top = Math.random() * altura + "px";
 
-});
+    botaoNao.style.left = Math.random()*largura+"px";
+
+    botaoNao.style.top = Math.random()*altura+"px";
+
+    mensagem.innerHTML = frases[Math.floor(Math.random()*frases.length)];
+
+    mensagem.classList.add("show");
+
+    setTimeout(()=>{
+
+        mensagem.classList.remove("show");
+
+    },1800);
+
+}
 
 // Botão SIM
 botaoSim.addEventListener("click", () => {
