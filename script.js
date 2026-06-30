@@ -147,6 +147,22 @@ if(numero == 95){
 
 });
 
+function carta(){
+
+    document.getElementById("loading").innerHTML = `
+
+    <h1>💌</h1>
+
+    <h2>Uma cartinha pra você...</h2>
+
+    <div id="textoCarta"></div>
+
+    `;
+
+    escreverCarta();
+
+}
+
 function escreverCarta(){
 
 const texto = `
