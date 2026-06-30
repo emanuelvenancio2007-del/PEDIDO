@@ -13,21 +13,23 @@ for (let i = 0; i < 180; i++) {
     stars.appendChild(star);
 }
 
-const frases = [
+const frases=[
 
-"😂 Boa tentativa.",
+"😂 Boa tentativa!",
 
-"😒 Essa opção está desativada.",
+"🤨 Tem certeza?",
 
-"🤨 Tem certeza disso?",
+"😎 Acho melhor apertar o azul.",
 
-"❤️ Vai no azul, confia.",
+"❤️ Esse botão ficou tímido.",
 
-"🤣 Você é bem insistente!",
+"🚫 Essa opção está em manutenção.",
 
-"🚫 Erro 404: opção não encontrada.",
+"🤣 Você não desiste mesmo.",
 
-"😎 O botão entrou em modo de fuga."
+"🙃 Quase conseguiu.",
+
+"🥹 Tadinho do Emanuel..."
 
 ];
 
