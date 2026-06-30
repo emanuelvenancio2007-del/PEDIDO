@@ -36,40 +36,38 @@ const frases=[
 botaoNao.addEventListener("mouseenter", fugir);
 botaoNao.addEventListener("click", fugir);
 
-function fugir(){
+function fugir() {
 
-    const largura = window.innerWidth - 250;
-    const altura = window.innerHeight - 120;
+    const card = document.querySelector(".container");
+    const cardRect = card.getBoundingClientRect();
 
-const card = document.querySelector(".container");
+    let x;
+    let y;
 
-const cardRect = card.getBoundingClientRect();
+    do {
 
-const x =
-cardRect.left +
-Math.random() *
-(cardRect.width-220);
+        x = cardRect.left + Math.random() * (cardRect.width - 180);
+        y = cardRect.top + Math.random() * (cardRect.height - 80);
 
-const y =
-cardRect.top +
-Math.random() *
-(cardRect.height-70);
+    } while (
+        x > cardRect.width / 2 &&
+        y > cardRect.height / 2
+    );
 
-botaoNao.style.position="fixed";
+    botaoNao.style.position = "fixed";
+    botaoNao.style.left = x + "px";
+    botaoNao.style.top = y + "px";
 
-botaoNao.style.left=x+"px";
-
-botaoNao.style.top=y+"px";
-
-    mensagem.innerHTML = frases[Math.floor(Math.random()*frases.length)];
+    mensagem.innerHTML =
+        frases[Math.floor(Math.random() * frases.length)];
 
     mensagem.classList.add("show");
 
-    setTimeout(()=>{
+    setTimeout(() => {
 
         mensagem.classList.remove("show");
 
-    },1800);
+    }, 1500);
 
 }
 
