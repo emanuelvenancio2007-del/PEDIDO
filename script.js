@@ -153,21 +153,13 @@ document.getElementById("loading").innerHTML=`
 
 <h1>💌</h1>
 
-<h2>Eu sabia...</h2>
+<h2>Uma cartinha pra você...</h2>
 
-<p>
-
-Você acabou de deixar o Emanuel extremamente feliz.
-
-<br><br>
-
-Mas essa ainda não é a surpresa...
-
-❤️
-
-</p>
+<div id="textoCarta"></div>
 
 `;
+
+escreverCarta();
 
 }
 
