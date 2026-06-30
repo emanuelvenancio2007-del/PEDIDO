@@ -73,7 +73,76 @@ botaoNao.style.top=y+"px";
 
 }
 
-// Botão SIM
 botaoSim.addEventListener("click", () => {
-    alert("Funcionou! ❤️");
+
+    document.querySelector(".container").style.display = "none";
+
+    document.body.innerHTML += `
+
+    <div id="loading">
+
+        <h1>❤️</h1>
+
+        <h2>Preparando uma surpresa...</h2>
+
+        <div class="barra">
+
+            <div class="progresso"></div>
+
+        </div>
+
+        <p id="porcentagem">0%</p>
+
+    </div>
+
+    `;
+
+    let numero = 0;
+
+    const texto = document.getElementById("porcentagem");
+
+    const barra = document.querySelector(".progresso");
+
+    const tempo = setInterval(() => {
+
+        numero++;
+
+        barra.style.width = numero + "%";
+
+        texto.innerHTML = numero + "%";
+
+        if(numero >= 100){
+
+            clearInterval(tempo);
+
+            setTimeout(carta,700);
+
+        }
+
+    },25);
+
 });
+
+function carta(){
+
+document.getElementById("loading").innerHTML=`
+
+<h1>💌</h1>
+
+<h2>Eu sabia...</h2>
+
+<p>
+
+Você acabou de deixar o Emanuel extremamente feliz.
+
+<br><br>
+
+Mas essa ainda não é a surpresa...
+
+❤️
+
+</p>
+
+`;
+
+}
