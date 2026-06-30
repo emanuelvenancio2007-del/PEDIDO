@@ -22,16 +22,16 @@ const ui = {
 // ==============================
 
 const frases = [
-    "😂 Boa tentativa!",
-    "🤨 Tem certeza disso?",
-    "😎 Acho melhor apertar o azul.",
-    "❤️ Esse botão ficou tímido.",
-    "🚫 Essa opção está desativada.",
-    "🤣 Você é bem insistente.",
-    "🙃 Quase conseguiu.",
-    "🥹 Tadinho do Emanuel...",
-    "👀 Eu vi isso hein...",
-    "💙 O botão azul está logo ali."
+    "😂 Boa tentativa, Laura...",
+    "🤨 Acho que esse botão resolveu te desafiar.",
+    "😅 Esse botão está um pouco tímido hoje.",
+    "❤️ Acho que o azul combina mais com você.",
+    "👀 Quase conseguiu...",
+    "🥹 Faz isso comigo não, Laura.",
+    "💙 Tenho quase certeza que você queria o outro.",
+    "🤣 Esse botão decidiu fugir.",
+    "✨ Vai... tenta o azul.",
+    "😌 Eu prometo que vale a pena."
 ];
 
 // ==============================
@@ -231,12 +231,12 @@ function iniciarLoading() {
     const status = document.getElementById("status");
 
     const etapas = [
-        { numero: 0, texto: "Inicializando..." },
-        { numero: 25, texto: "Analisando sua resposta..." },
-        { numero: 50, texto: "Calculando sinceridade..." },
-        { numero: 75, texto: "Preparando uma surpresa..." },
-        { numero: 95, texto: "Quase pronto... ❤️" }
-    ];
+    { numero: 0, texto: "Preparando uma surpresa para a Laura..." },
+    { numero: 25, texto: "Analisando seu sorriso..." },
+    { numero: 50, texto: "Calculando a coragem do Emanuel..." },
+    { numero: 75, texto: "Colocando tudo no lugar..." },
+    { numero: 95, texto: "Quase lá... ❤️" }
+];
 
     let progresso = 0;
 
@@ -304,9 +304,15 @@ function mostrarCarta() {
 // TEXTO DA CARTA
 // ==============================
 
-const textoCarta = `Oi...
+const textoCarta = `Oi, Laura...
 
-Eu só queria te dizer uma coisinha.
+Talvez você esteja se perguntando por que eu resolvi fazer um site inteiro só para dizer algumas coisas.
+
+A verdade é que uma mensagem comum parecia simples demais.
+
+Então pensei:
+
+"Por que não criar algo que faça ela sorrir?"
 
 Pode parecer cedo...
 
@@ -316,15 +322,15 @@ Cada conversa, cada risada e cada momento fizeram eu perceber o quanto a sua com
 
 Você consegue deixar meus dias mais leves sem nem perceber.
 
-Talvez isso tudo pareça um pouco bobo...
+Talvez eu esteja sendo um pouco maluco por fazer tudo isso...
 
-Mas eu achei que uma simples mensagem nunca seria suficiente.
+Mas achei que você merecia algo diferente.
 
-Então resolvi fazer esse site pra você.
+Espero, de verdade, que esse pequeno site consiga arrancar pelo menos um sorriso seu.
 
-Espero que ele tenha conseguido arrancar pelo menos um sorriso seu.
+Com carinho,
 
-❤️`;
+Emanuel ❤️`;
 
 // ==============================
 // ESCREVER CARTA
