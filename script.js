@@ -147,57 +147,41 @@ if(numero == 95){
 
 });
 
-function carta(){
-
-document.getElementById("loading").innerHTML=`
-
-<h1>💌</h1>
-
-<h2>Uma cartinha pra você...</h2>
-
-<div id="textoCarta"></div>
-
-`;
-
-escreverCarta();
-
-}
-
 function escreverCarta(){
 
-const texto=
+const texto = `
 
-`Oi...
+Oi...
 
 Eu só queria te dizer uma coisinha.
 
 Pode parecer cedo...
 
-Mas o pouco tempo que nós nos conhecemos já foi suficiente para você se tornar alguém muito especial para mim.
+Mas o pouco tempo que nós nos conhecemos já foi suficiente para eu gostar muito de você.
 
-Cada conversa, cada risada e cada momento fizeram eu perceber o quanto eu gosto da sua companhia.
+Cada conversa, cada risada e cada momento fizeram eu perceber o quanto sua companhia faz bem.
 
-Talvez você nem imagine...
+Você consegue deixar meus dias mais leves sem nem perceber.
 
-Mas você consegue deixar meus dias mais leves só por estar presente.
-
-E foi por isso que resolvi fazer esse site.
+Foi por isso que resolvi fazer esse site.
 
 Porque uma simples mensagem nunca seria suficiente para demonstrar o quanto eu queria te fazer sorrir.
 
-❤️`;
+❤️
 
-let i=0;
+`;
 
-const elemento=document.getElementById("textoCarta");
+let i = 0;
 
-const intervalo=setInterval(()=>{
+const elemento = document.getElementById("textoCarta");
 
-    elemento.innerHTML+=texto.charAt(i);
+const intervalo = setInterval(()=>{
+
+    elemento.innerHTML += texto.charAt(i);
 
     i++;
 
-    if(i>=texto.length){
+    if(i >= texto.length){
 
         clearInterval(intervalo);
 
